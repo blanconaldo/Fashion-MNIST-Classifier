@@ -38,8 +38,7 @@ Fashion-MNIST-Classifier/
 ├── main.py               # Main script for training and evaluation
 ├── tkinter_example.py    # GUI application for real-world testing
 ├── utils/                # Helper functions and model architecture
-├── models/               # Saved model files
-├── data/                 # Cached dataset
+├── models/               # Saved best model file
 ├── requirements.txt      # Dependencies
 ├── output.txt            # Final output after training model
 ├── .gitignore            # Self explanatory
