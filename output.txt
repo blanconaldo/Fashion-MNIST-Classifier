@@ -1,0 +1,289 @@
+2025-04-20 08:28:42.340349: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-20 08:28:44.568738: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-20 08:28:50,375 - INFO - Starting Fashion MNIST data loading...
+2025-04-20 08:28:50,377 - INFO - Loading Fashion MNIST from cache...
+2025-04-20 08:28:50,791 - INFO - Dataset loaded from cache successfully.
+2025-04-20 08:28:50,791 - INFO - Training data shape: (60000, 28, 28), Labels shape: (60000,)
+2025-04-20 08:28:50,791 - INFO - Testing data shape: (10000, 28, 28), Labels shape: (10000,)
+2025-04-20 08:28:50,963 - INFO - After splitting - Training: (48000, 28, 28), Validation: (12000, 28, 28)
+2025-04-20 08:28:50,964 - INFO - Fashion MNIST dataset loading process completed.
+2025-04-20 08:28:50,964 - INFO -
+=== Visualizing Original Dataset ===
+2025-04-20 08:28:50,964 - INFO -
+=== Dataset Statistics ===
+2025-04-20 08:28:50,964 - INFO - Training samples: 48000
+2025-04-20 08:28:50,964 - INFO - Test samples: 12000
+2025-04-20 08:28:50,964 - INFO - Test samples: 12000
+2025-04-20 08:28:50,964 - INFO - Image dimensions: (28, 28)
+2025-04-20 08:28:50,964 - INFO - Number of classes: 10
+2025-04-20 08:28:50,964 - INFO - Displaying sample images...
+2025-04-20 08:28:54,087 - INFO - Plotting class distribution...
+2025-04-20 08:28:54,818 - INFO - Plotting pixel distribution...
+2025-04-20 08:28:56,138 - INFO - Plotting average images per class...
+2025-04-20 08:28:57,281 - INFO - Plotting variations within a class...
+2025-04-20 08:28:58,439 - INFO - All visualizations completed successfully.
+2025-04-20 08:28:58,439 - INFO - === Preparing Data for CNN ===
+2025-04-20 08:28:58,439 - INFO - Data reshaped for CNN input: (48000, 28, 28, 1)
+2025-04-20 08:28:58,439 - INFO - Training data shape: (48000, 28, 28, 1)
+2025-04-20 08:28:58,439 - INFO - Test data shape: (10000, 28, 28, 1)
+2025-04-20 08:28:58,439 - INFO -
+=== Demonstrating Data Augmentation ===
+2025-04-20 08:28:58,444 - INFO - Created data augmentation generator with parameters:
+2025-04-20 08:28:58,444 - INFO -   - Rotation range: 10 degrees
+2025-04-20 08:28:58,445 - INFO -   - Width shift range: 0.1
+2025-04-20 08:28:58,445 - INFO -   - Height shift range: 0.1
+2025-04-20 08:28:58,445 - INFO -   - Zoom range: 0.1
+2025-04-20 08:28:58,445 - INFO -   - Horizontal flip: True
+2025-04-20 08:28:58,445 - INFO -   - Shear range: 0.1
+2025-04-20 08:28:58,922 - INFO - === Building CNN Model ===
+C:\Users\youss\PycharmProjects\CNN-Project\.venv\Lib\site-packages\keras\src\layers\convolutional\base_conv.py:107: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+2025-04-20 08:28:58.974790: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Model: "sequential"
+┌─────────────────────────────────┬────────────────────────┬───────────────┐
+│ Layer (type)                    │ Output Shape           │       Param # │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d (Conv2D)                 │ (None, 28, 28, 32)     │           320 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization             │ (None, 28, 28, 32)     │           128 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation (Activation)         │ (None, 28, 28, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_1 (Conv2D)               │ (None, 28, 28, 32)     │         9,248 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_1           │ (None, 28, 28, 32)     │           128 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_1 (Activation)       │ (None, 28, 28, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d (MaxPooling2D)    │ (None, 14, 14, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout (Dropout)               │ (None, 14, 14, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_2 (Conv2D)               │ (None, 14, 14, 64)     │        18,496 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_2           │ (None, 14, 14, 64)     │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_2 (Activation)       │ (None, 14, 14, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_3 (Conv2D)               │ (None, 14, 14, 64)     │        36,928 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_3           │ (None, 14, 14, 64)     │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_3 (Activation)       │ (None, 14, 14, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_1 (MaxPooling2D)  │ (None, 7, 7, 64)       │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (Dropout)             │ (None, 7, 7, 64)       │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ flatten (Flatten)               │ (None, 3136)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense (Dense)                   │ (None, 512)            │     1,606,144 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_4           │ (None, 512)            │         2,048 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_4 (Activation)       │ (None, 512)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_2 (Dropout)             │ (None, 512)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (None, 10)             │         5,130 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 1,679,082 (6.41 MB)
+ Trainable params: 1,677,674 (6.40 MB)
+ Non-trainable params: 1,408 (5.50 KB)
+2025-04-20 08:28:59,280 - INFO - === Training CNN Model ===
+2025-04-20 08:28:59,282 - INFO - Training with data augmentation...
+2025-04-20 08:28:59,282 - INFO - Created data augmentation generator with parameters:
+2025-04-20 08:28:59,282 - INFO -   - Rotation range: 10 degrees
+2025-04-20 08:28:59,282 - INFO -   - Width shift range: 0.1
+2025-04-20 08:28:59,282 - INFO -   - Height shift range: 0.1
+2025-04-20 08:28:59,282 - INFO -   - Zoom range: 0.1
+2025-04-20 08:28:59,282 - INFO -   - Horizontal flip: True
+2025-04-20 08:28:59,282 - INFO -   - Shear range: 0.1
+C:\Users\youss\PycharmProjects\CNN-Project\.venv\Lib\site-packages\keras\src\trainers\data_adapters\py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
+  self._warn_if_super_not_called()
+Epoch 1/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 178ms/step - loss: 0.9013 - sparse_categorical_accuracy: 0.6799
+Epoch 1: val_sparse_categorical_accuracy improved from -inf to 0.85092, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 141s 184ms/step - loss: 0.9011 - sparse_categorical_accuracy: 0.6800 - val_loss: 0.3986 - val_sparse_categorical_accuracy: 0.8509 - learning_rate: 0.0010
+Epoch 2/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 197ms/step - loss: 0.5145 - sparse_categorical_accuracy: 0.8076
+Epoch 2: val_sparse_categorical_accuracy improved from 0.85092 to 0.86783, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 152s 203ms/step - loss: 0.5145 - sparse_categorical_accuracy: 0.8076 - val_loss: 0.3452 - val_sparse_categorical_accuracy: 0.8678 - learning_rate: 0.0010
+Epoch 3/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 180ms/step - loss: 0.4397 - sparse_categorical_accuracy: 0.8361
+Epoch 3: val_sparse_categorical_accuracy improved from 0.86783 to 0.89058, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 139s 185ms/step - loss: 0.4397 - sparse_categorical_accuracy: 0.8361 - val_loss: 0.2956 - val_sparse_categorical_accuracy: 0.8906 - learning_rate: 0.0010
+Epoch 4/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 204ms/step - loss: 0.4082 - sparse_categorical_accuracy: 0.8478
+Epoch 4: val_sparse_categorical_accuracy did not improve from 0.89058
+750/750 ━━━━━━━━━━━━━━━━━━━━ 158s 210ms/step - loss: 0.4082 - sparse_categorical_accuracy: 0.8478 - val_loss: 0.2915 - val_sparse_categorical_accuracy: 0.8894 - learning_rate: 0.0010
+Epoch 5/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 187ms/step - loss: 0.3786 - sparse_categorical_accuracy: 0.8586
+Epoch 5: val_sparse_categorical_accuracy improved from 0.89058 to 0.89783, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 144s 193ms/step - loss: 0.3786 - sparse_categorical_accuracy: 0.8586 - val_loss: 0.2720 - val_sparse_categorical_accuracy: 0.8978 - learning_rate: 0.0010
+Epoch 6/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 181ms/step - loss: 0.3583 - sparse_categorical_accuracy: 0.8691
+Epoch 6: val_sparse_categorical_accuracy improved from 0.89783 to 0.90483, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 140s 187ms/step - loss: 0.3583 - sparse_categorical_accuracy: 0.8691 - val_loss: 0.2598 - val_sparse_categorical_accuracy: 0.9048 - learning_rate: 0.0010
+Epoch 7/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 177ms/step - loss: 0.3425 - sparse_categorical_accuracy: 0.8743
+Epoch 7: val_sparse_categorical_accuracy did not improve from 0.90483
+750/750 ━━━━━━━━━━━━━━━━━━━━ 137s 183ms/step - loss: 0.3425 - sparse_categorical_accuracy: 0.8743 - val_loss: 0.2575 - val_sparse_categorical_accuracy: 0.9048 - learning_rate: 0.0010
+Epoch 8/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 174ms/step - loss: 0.3257 - sparse_categorical_accuracy: 0.8782
+Epoch 8: val_sparse_categorical_accuracy improved from 0.90483 to 0.90492, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 135s 180ms/step - loss: 0.3257 - sparse_categorical_accuracy: 0.8782 - val_loss: 0.2608 - val_sparse_categorical_accuracy: 0.9049 - learning_rate: 0.0010
+Epoch 9/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 176ms/step - loss: 0.3181 - sparse_categorical_accuracy: 0.8839
+Epoch 9: val_sparse_categorical_accuracy improved from 0.90492 to 0.90675, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 136s 181ms/step - loss: 0.3181 - sparse_categorical_accuracy: 0.8839 - val_loss: 0.2491 - val_sparse_categorical_accuracy: 0.9068 - learning_rate: 0.0010
+Epoch 10/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 173ms/step - loss: 0.3162 - sparse_categorical_accuracy: 0.8830
+Epoch 10: val_sparse_categorical_accuracy improved from 0.90675 to 0.91242, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 134s 178ms/step - loss: 0.3162 - sparse_categorical_accuracy: 0.8830 - val_loss: 0.2472 - val_sparse_categorical_accuracy: 0.9124 - learning_rate: 0.0010
+Epoch 11/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 174ms/step - loss: 0.3042 - sparse_categorical_accuracy: 0.8874
+Epoch 11: val_sparse_categorical_accuracy did not improve from 0.91242
+750/750 ━━━━━━━━━━━━━━━━━━━━ 135s 180ms/step - loss: 0.3042 - sparse_categorical_accuracy: 0.8874 - val_loss: 0.2373 - val_sparse_categorical_accuracy: 0.9111 - learning_rate: 0.0010
+Epoch 12/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 173ms/step - loss: 0.2951 - sparse_categorical_accuracy: 0.8909
+Epoch 12: val_sparse_categorical_accuracy did not improve from 0.91242
+750/750 ━━━━━━━━━━━━━━━━━━━━ 134s 179ms/step - loss: 0.2951 - sparse_categorical_accuracy: 0.8909 - val_loss: 0.2764 - val_sparse_categorical_accuracy: 0.8957 - learning_rate: 0.0010
+Epoch 13/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 172ms/step - loss: 0.2974 - sparse_categorical_accuracy: 0.8901
+Epoch 13: val_sparse_categorical_accuracy did not improve from 0.91242
+750/750 ━━━━━━━━━━━━━━━━━━━━ 133s 177ms/step - loss: 0.2974 - sparse_categorical_accuracy: 0.8901 - val_loss: 0.2386 - val_sparse_categorical_accuracy: 0.9097 - learning_rate: 0.0010
+Epoch 14/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - loss: 0.2824 - sparse_categorical_accuracy: 0.8970
+Epoch 14: val_sparse_categorical_accuracy improved from 0.91242 to 0.91692, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 2365s 3s/step - loss: 0.2824 - sparse_categorical_accuracy: 0.8970 - val_loss: 0.2262 - val_sparse_categorical_accuracy: 0.9169 - learning_rate: 0.0010
+Epoch 15/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 176ms/step - loss: 0.2850 - sparse_categorical_accuracy: 0.8945
+Epoch 15: val_sparse_categorical_accuracy improved from 0.91692 to 0.91917, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 137s 182ms/step - loss: 0.2850 - sparse_categorical_accuracy: 0.8945 - val_loss: 0.2244 - val_sparse_categorical_accuracy: 0.9192 - learning_rate: 0.0010
+Epoch 16/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 192ms/step - loss: 0.2823 - sparse_categorical_accuracy: 0.8967
+Epoch 16: val_sparse_categorical_accuracy did not improve from 0.91917
+750/750 ━━━━━━━━━━━━━━━━━━━━ 148s 197ms/step - loss: 0.2823 - sparse_categorical_accuracy: 0.8967 - val_loss: 0.2364 - val_sparse_categorical_accuracy: 0.9101 - learning_rate: 0.0010
+Epoch 17/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 176ms/step - loss: 0.2643 - sparse_categorical_accuracy: 0.9013
+Epoch 17: val_sparse_categorical_accuracy improved from 0.91917 to 0.92250, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 136s 182ms/step - loss: 0.2643 - sparse_categorical_accuracy: 0.9013 - val_loss: 0.2121 - val_sparse_categorical_accuracy: 0.9225 - learning_rate: 0.0010
+Epoch 18/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 178ms/step - loss: 0.2732 - sparse_categorical_accuracy: 0.8980
+Epoch 18: val_sparse_categorical_accuracy improved from 0.92250 to 0.92392, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 138s 184ms/step - loss: 0.2732 - sparse_categorical_accuracy: 0.8980 - val_loss: 0.2050 - val_sparse_categorical_accuracy: 0.9239 - learning_rate: 0.0010
+Epoch 19/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 172ms/step - loss: 0.2750 - sparse_categorical_accuracy: 0.9017
+Epoch 19: val_sparse_categorical_accuracy did not improve from 0.92392
+750/750 ━━━━━━━━━━━━━━━━━━━━ 133s 177ms/step - loss: 0.2750 - sparse_categorical_accuracy: 0.9017 - val_loss: 0.2143 - val_sparse_categorical_accuracy: 0.9236 - learning_rate: 0.0010
+Epoch 20/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 174ms/step - loss: 0.2627 - sparse_categorical_accuracy: 0.9020
+Epoch 20: val_sparse_categorical_accuracy did not improve from 0.92392
+750/750 ━━━━━━━━━━━━━━━━━━━━ 134s 179ms/step - loss: 0.2627 - sparse_categorical_accuracy: 0.9020 - val_loss: 0.2183 - val_sparse_categorical_accuracy: 0.9194 - learning_rate: 0.0010
+Epoch 21/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 172ms/step - loss: 0.2577 - sparse_categorical_accuracy: 0.9049
+Epoch 21: val_sparse_categorical_accuracy improved from 0.92392 to 0.92717, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 133s 177ms/step - loss: 0.2577 - sparse_categorical_accuracy: 0.9049 - val_loss: 0.1991 - val_sparse_categorical_accuracy: 0.9272 - learning_rate: 0.0010
+Epoch 22/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 173ms/step - loss: 0.2586 - sparse_categorical_accuracy: 0.9061
+Epoch 22: val_sparse_categorical_accuracy improved from 0.92717 to 0.93033, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 134s 178ms/step - loss: 0.2586 - sparse_categorical_accuracy: 0.9061 - val_loss: 0.1966 - val_sparse_categorical_accuracy: 0.9303 - learning_rate: 0.0010
+Epoch 23/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 40s/step - loss: 0.2571 - sparse_categorical_accuracy: 0.9082
+Epoch 23: val_sparse_categorical_accuracy did not improve from 0.93033
+750/750 ━━━━━━━━━━━━━━━━━━━━ 30024s 40s/step - loss: 0.2571 - sparse_categorical_accuracy: 0.9082 - val_loss: 0.1974 - val_sparse_categorical_accuracy: 0.9247 - learning_rate: 0.0010
+Epoch 24/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 189ms/step - loss: 0.2493 - sparse_categorical_accuracy: 0.9080
+Epoch 24: val_sparse_categorical_accuracy did not improve from 0.93033
+750/750 ━━━━━━━━━━━━━━━━━━━━ 146s 195ms/step - loss: 0.2493 - sparse_categorical_accuracy: 0.9080 - val_loss: 0.2011 - val_sparse_categorical_accuracy: 0.9286 - learning_rate: 0.0010
+Epoch 25/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 199ms/step - loss: 0.2474 - sparse_categorical_accuracy: 0.9097
+Epoch 25: val_sparse_categorical_accuracy did not improve from 0.93033
+
+Epoch 25: ReduceLROnPlateau reducing learning rate to 0.00010000000474974513.
+750/750 ━━━━━━━━━━━━━━━━━━━━ 154s 206ms/step - loss: 0.2474 - sparse_categorical_accuracy: 0.9097 - val_loss: 0.1978 - val_sparse_categorical_accuracy: 0.9278 - learning_rate: 0.0010
+Epoch 26/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 178ms/step - loss: 0.2326 - sparse_categorical_accuracy: 0.9144
+Epoch 26: val_sparse_categorical_accuracy did not improve from 0.93033
+750/750 ━━━━━━━━━━━━━━━━━━━━ 138s 183ms/step - loss: 0.2326 - sparse_categorical_accuracy: 0.9144 - val_loss: 0.1970 - val_sparse_categorical_accuracy: 0.9292 - learning_rate: 1.0000e-04
+Epoch 27/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 176ms/step - loss: 0.2280 - sparse_categorical_accuracy: 0.9151
+Epoch 27: val_sparse_categorical_accuracy improved from 0.93033 to 0.93133, saving model to ./models/fashion_mnist_model_best.keras
+750/750 ━━━━━━━━━━━━━━━━━━━━ 137s 182ms/step - loss: 0.2280 - sparse_categorical_accuracy: 0.9151 - val_loss: 0.1911 - val_sparse_categorical_accuracy: 0.9313 - learning_rate: 1.0000e-04
+Epoch 28/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 180ms/step - loss: 0.2205 - sparse_categorical_accuracy: 0.9198
+Epoch 28: val_sparse_categorical_accuracy did not improve from 0.93133
+750/750 ━━━━━━━━━━━━━━━━━━━━ 139s 186ms/step - loss: 0.2205 - sparse_categorical_accuracy: 0.9198 - val_loss: 0.1929 - val_sparse_categorical_accuracy: 0.9309 - learning_rate: 1.0000e-04
+Epoch 29/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 184ms/step - loss: 0.2222 - sparse_categorical_accuracy: 0.9191
+Epoch 29: val_sparse_categorical_accuracy did not improve from 0.93133
+750/750 ━━━━━━━━━━━━━━━━━━━━ 142s 190ms/step - loss: 0.2222 - sparse_categorical_accuracy: 0.9191 - val_loss: 0.2029 - val_sparse_categorical_accuracy: 0.9267 - learning_rate: 1.0000e-04
+Epoch 30/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 176ms/step - loss: 0.2176 - sparse_categorical_accuracy: 0.9217
+Epoch 30: val_sparse_categorical_accuracy improved from 0.93133 to 0.93142, saving model to ./models/fashion_mnist_model_best.keras
+
+Epoch 30: ReduceLROnPlateau reducing learning rate to 1.0000000474974514e-05.
+750/750 ━━━━━━━━━━━━━━━━━━━━ 136s 181ms/step - loss: 0.2176 - sparse_categorical_accuracy: 0.9217 - val_loss: 0.1922 - val_sparse_categorical_accuracy: 0.9314 - learning_rate: 1.0000e-04
+Epoch 31/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 181ms/step - loss: 0.2183 - sparse_categorical_accuracy: 0.9170
+Epoch 31: val_sparse_categorical_accuracy did not improve from 0.93142
+750/750 ━━━━━━━━━━━━━━━━━━━━ 140s 186ms/step - loss: 0.2183 - sparse_categorical_accuracy: 0.9170 - val_loss: 0.1945 - val_sparse_categorical_accuracy: 0.9304 - learning_rate: 1.0000e-05
+Epoch 32/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 175ms/step - loss: 0.2168 - sparse_categorical_accuracy: 0.9205
+Epoch 32: val_sparse_categorical_accuracy did not improve from 0.93142
+750/750 ━━━━━━━━━━━━━━━━━━━━ 136s 181ms/step - loss: 0.2168 - sparse_categorical_accuracy: 0.9205 - val_loss: 0.1949 - val_sparse_categorical_accuracy: 0.9308 - learning_rate: 1.0000e-05
+Epoch 33/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 175ms/step - loss: 0.2130 - sparse_categorical_accuracy: 0.9211
+Epoch 33: val_sparse_categorical_accuracy did not improve from 0.93142
+
+Epoch 33: ReduceLROnPlateau reducing learning rate to 1.0000000656873453e-06.
+750/750 ━━━━━━━━━━━━━━━━━━━━ 135s 180ms/step - loss: 0.2130 - sparse_categorical_accuracy: 0.9211 - val_loss: 0.1935 - val_sparse_categorical_accuracy: 0.9309 - learning_rate: 1.0000e-05
+Epoch 34/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - loss: 0.2188 - sparse_categorical_accuracy: 0.9209
+Epoch 34: val_sparse_categorical_accuracy did not improve from 0.93142
+750/750 ━━━━━━━━━━━━━━━━━━━━ 2590s 3s/step - loss: 0.2188 - sparse_categorical_accuracy: 0.9209 - val_loss: 0.1949 - val_sparse_categorical_accuracy: 0.9303 - learning_rate: 1.0000e-06
+Epoch 35/80
+750/750 ━━━━━━━━━━━━━━━━━━━━ 0s 180ms/step - loss: 0.2159 - sparse_categorical_accuracy: 0.9207
+Epoch 35: val_sparse_categorical_accuracy did not improve from 0.93142
+750/750 ━━━━━━━━━━━━━━━━━━━━ 140s 186ms/step - loss: 0.2159 - sparse_categorical_accuracy: 0.9207 - val_loss: 0.1953 - val_sparse_categorical_accuracy: 0.9303 - learning_rate: 1.0000e-06
+Epoch 35: early stopping
+2025-04-20 19:26:12,996 - INFO - Model training completed. Best weights loaded.
+2025-04-20 19:26:13,001 - INFO - Total training time: 10h 57m 13.72s
+2025-04-20 19:26:13,002 - INFO - === Evaluating CNN Model ===
+313/313 - 4s - 13ms/step - loss: 0.2060 - sparse_categorical_accuracy: 0.9253
+2025-04-20 19:26:17,296 - INFO - Test accuracy: 0.9253
+313/313 ━━━━━━━━━━━━━━━━━━━━ 4s 13ms/step
+2025-04-20 19:26:22,841 - INFO - Classification Report:
+              precision    recall  f1-score   support
+
+ T-shirt/top       0.91      0.84      0.87      1000
+     Trouser       1.00      0.99      0.99      1000
+    Pullover       0.94      0.86      0.90      1000
+       Dress       0.95      0.91      0.93      1000
+        Coat       0.90      0.89      0.89      1000
+      Sandal       0.98      0.99      0.98      1000
+       Shirt       0.71      0.86      0.78      1000
+     Sneaker       0.95      0.97      0.96      1000
+         Bag       0.99      0.99      0.99      1000
+  Ankle boot       0.98      0.95      0.96      1000
+
+    accuracy                           0.93     10000
+   macro avg       0.93      0.93      0.93     10000
+weighted avg       0.93      0.93      0.93     10000
+
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 61ms/step
+2025-04-20 19:26:24,477 - INFO - Fashion MNIST CNN project completed successfully!
+2025-04-20 19:26:24,660 - INFO - Complete model saved in Keras format at: ./models/fashion_mnist_cnn_20250420_192624.keras
+2025-04-20 19:26:24,775 - INFO - Model weights saved at: ./models/fashion_mnist_cnn_20250420_192624.weights.h5
+2025-04-20 19:26:24,924 - INFO - Latest model saved at: ./models/fashion_mnist_cnn_latest.keras
+2025-04-20 19:26:24,924 - INFO - Model saved for deployment at: ./models/fashion_mnist_cnn_20250420_192624.keras
+2025-04-20 19:26:24,924 - INFO - Model saved in Keras format at: ./models/fashion_mnist_cnn_20250420_192624.weights.h5
+
+Process finished with exit code 0
