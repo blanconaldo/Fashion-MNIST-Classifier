@@ -2,7 +2,7 @@ import os
 import logging
 import keras
 from keras import callbacks, models, layers
-from data_augmentation import create_data_augmentation_generator
+from utils.data_augmentation import create_data_augmentation_generator
 
 # Configure basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
