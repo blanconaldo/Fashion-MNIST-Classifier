@@ -227,6 +227,37 @@ The model achieved **92.53%** accuracy on the test set with these metrics:
 - Shows prediction and confidence score
 - Due to the nature of the dataset, it is limited on what images it can make confident prediction on.
 
+## Testing
+
+This project includes a comprehensive test suite to ensure code reliability and demonstrate test-driven development practices.
+
+### Running Tests
+
+1. Install test dependencies:
+   ```bash
+   pip install pytest
+
+2. Run the test suite:
+    ```bash
+   pytest
+   
+3. For detailed output with coverage information:
+    ```bash
+   pytest -v --cov=utils
+   
+### Test Coverage
+The test suite validates core functionality including:
+
+Data Loading: Tests dataset loading, caching, and preprocessing
+Model Architecture: Verifies CNN structure, layers, and output shapes
+Data Augmentation: Tests image transformation configurations
+Image Processing: Validates conversion of arbitrary images to model-compatible format
+
+### Test Structure
+Tests are organized using pytest fixtures and follow the AAA (Arrange-Act-Assert) pattern to improve readability and maintainability. Mock objects are used to isolate tests from external dependencies like file systems and neural network training.
+
+Each component of the application is tested independently to ensure modular design and proper separation of concerns.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
