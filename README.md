@@ -3,7 +3,7 @@
 A complete convolutional neural network project for classifying clothing items, built with TensorFlow/Keras and deployed as a desktop application.
 
 ![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)
-![TensorFlow Version](https://img.shields.io/badge/tensorflow-2.15%2B-orange)
+![TensorFlow Version](https://img.shields.io/badge/tensorflow-2.19%2B-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Project Overview
