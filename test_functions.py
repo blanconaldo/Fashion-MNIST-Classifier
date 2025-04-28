@@ -1,5 +1,4 @@
 import pytest
-import os
 import numpy as np
 from unittest.mock import patch, MagicMock
 from PIL import Image
@@ -92,10 +91,37 @@ class TestDataAugmentation:
         assert datagen.horizontal_flip == True
 
 
-class TestImageProcessing:
-    def test_preprocess_image(self):
+class TestStreamlitFunctions:
+    def test_get_confidence_color(self):
+        # Import the function from your Streamlit app
+        from streamlit_classifier_app import get_confidence_color
+
+        # Test different confidence thresholds
+        assert get_confidence_color(95) == "green"
+        assert get_confidence_color(85) == "orange"
+        assert get_confidence_color(60) == "red"
+
+    @patch('streamlit_classifier_app.load_model')
+    @patch('streamlit_classifier_app.st.spinner')
+    def test_load_fashion_model(self, mock_spinner, mock_load_model):
+        # Setup mocks
+        mock_model = MagicMock()
+        mock_load_model.return_value = mock_model
+        mock_spinner.return_value.__enter__.return_value = None
+
+        # Import the function from your Streamlit app
+        from streamlit_classifier_app import load_fashion_model
+
+        # Call function
+        model = load_fashion_model("./test_model_path.keras")
+
+        # Assertions
+        assert model is not None
+        mock_load_model.assert_called_once_with("./test_model_path.keras")
+        mock_spinner.assert_called_once()
+
+    def test_preprocess_image_with_pil(self):
         # Create a test image
-        test_img_path = 'test_image.png'
         img = Image.new('RGB', (50, 50), color='white')
 
         # Draw a simple shape to simulate a clothing item
@@ -103,25 +129,19 @@ class TestImageProcessing:
             for y in range(15, 35):
                 img.putpixel((x, y), (0, 0, 0))
 
-        try:
-            img.save(test_img_path)
+        # Import the function from your Streamlit app
+        from streamlit_classifier_app import preprocess_image
 
-            # Fix the import to match your new module structure
-            from tkinter_example import preprocess_image
-            img_array, _ = preprocess_image(test_img_path)
+        # Process the image
+        img_array, processed_img = preprocess_image(img)
 
-            # Assertions
-            assert img_array is not None
-            assert img_array.shape == (1, 28, 28, 1)
-            # Update to accept either float32 or float64
-            assert img_array.dtype in [np.float32, np.float64]
-            assert np.max(img_array) <= 1.0
-            assert np.min(img_array) >= 0.0
-
-        finally:
-            # Clean up
-            if os.path.exists(test_img_path):
-                os.remove(test_img_path)
+        # Assertions
+        assert img_array is not None
+        assert img_array.shape == (1, 28, 28, 1)
+        assert img_array.dtype in [np.float32, np.float64]
+        assert np.max(img_array) <= 1.0
+        assert np.min(img_array) >= 0.0
+        assert processed_img is not None
 
 
 if __name__ == '__main__':
