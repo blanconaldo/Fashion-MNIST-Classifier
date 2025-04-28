@@ -98,10 +98,10 @@ This will:
 
 ### Using the Desktop Application
 
-To classify your own clothing images, you can either run the following after training the model, or you could directly use the downloaded best model in the "models" folder:
+To classify your own clothing images, you can either run the following after training the model, or you could directly download the 'models' folder and use the best model and also download the cached_images folder and then run the following:
 
 ```bash
-python tkinter_example.py
+streamlit run streamlit_classifier_app.py
 ```
 
 Upload any JPG, PNG, BMP, or GIF image of a clothing item to get a prediction.
@@ -217,14 +217,17 @@ The model achieved **92.53%** accuracy on the test set with these metrics:
   Ankle boot       0.98      0.95      0.96      1000
 ```
 
-### GUI Application
-
-- Built with Tkinter for cross-platform compatibility
-- Allows uploading and classifying custom images
-- Preprocesses images to match model's expected format
-- Displays both original and processed versions
-- Shows prediction and confidence score
-- Due to the nature of the dataset, it is limited on what images it can make confident prediction on.
+### Streamlit Web Application
+- Built with Streamlit for interactive web-based deployment
+- Features tabbed interface with classifier, examples gallery, and model details
+- Displays both original and processed images side-by-side
+- Shows predictions with color-coded confidence scores
+- Visualizes top 3 predictions with interactive bar chart
+- Maintains history of recent predictions
+- Allows downloading prediction results as CSV
+- Includes comprehensive model architecture visualization
+- Contains examples of each fashion category for reference
+- Like the model itself, performs best on simple, centered clothing images
 
 ## Testing
 
@@ -245,12 +248,12 @@ This project includes a comprehensive test suite to ensure code reliability and 
    pytest -v --cov=utils
    
 ### Test Coverage
-The test suite validates core functionality including:
+The testing covers ≈44% of the entire codebase. While it may not be a lot it validates the core and most important functionality including:
 
-Data Loading: Tests dataset loading, caching, and preprocessing
-Model Architecture: Verifies CNN structure, layers, and output shapes
-Data Augmentation: Tests image transformation configurations
-Image Processing: Validates conversion of arbitrary images to model-compatible format
+- Data Loading: Tests dataset loading, caching, and preprocessing
+- Model Architecture: Verifies CNN structure, layers, and output shapes
+- Data Augmentation: Tests image transformation configurations
+- Image Processing: Validates conversion of arbitrary images to model-compatible format
 
 ### Test Structure
 Tests are organized using pytest fixtures and follow the AAA (Arrange-Act-Assert) pattern to improve readability and maintainability. Mock objects are used to isolate tests from external dependencies like file systems and neural network training.
@@ -265,3 +268,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - [Fashion MNIST Dataset](https://github.com/zalandoresearch/fashion-mnist) by Zalando Research
 - TensorFlow and Keras documentation
+- Example images in the streamlit app are sourced from [Gap.com](https://www.gap.com) and belong to 'Gap Inc.'. They are shown for demonstration purposes only. All images are copyright of their respective owners.
