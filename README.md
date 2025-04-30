@@ -48,6 +48,7 @@ Fashion-MNIST-Classifier/
 ## Requirements
 
 - Python 3.11 or higher
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (if installing using Docker)
 - Libraries listed in requirements.txt:
 
 ```
@@ -62,7 +63,9 @@ tkinter (included in Python on Windows, python-tk package on Linux)
 ```
 
 ## Installation
+There are 2 ways you can install and use the app: using git clone and using Docker
 
+### Using Standard Git Clone
 1. Clone the repository:
    ```bash
    git clone https://github.com/blanconaldo/Fashion-MNIST-Classifier.git
@@ -80,15 +83,21 @@ tkinter (included in Python on Windows, python-tk package on Linux)
    pip install -r requirements.txt
    ```
 
+### Using Docker
+Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) first
+1. Build the Docker image
+    ```bash
+    docker build -t fashion-mnist-app .
+    ```
+
 ## Usage
+### Using Standard Git Clone
+#### Training the Model
 
-### Training the Model
-
-Run the main script to train and evaluate the model (might take up to 2 hours):
-
-```bash
-python main.py
-```
+1. Run the main script to train and evaluate the model from scratch (might take up to 2 hours):
+    ```bash
+    python main.py
+    ```
 
 This will:
 1. Download and preprocess the Fashion MNIST dataset
@@ -96,13 +105,27 @@ This will:
 3. Evaluate model performance
 4. Save the trained model
 
-### Using the Desktop Application
+#### Running the Streamlit application
 
-To classify your own clothing images, you can either run the following after training the model, or you could directly download the 'models' folder and use the best model and also download the cached_images folder and then run the following:
+1. To classify your own clothing images, you can either run the following after training the model, or you could directly download the 'models' folder and use the best model and also download the cached_images folder and then run the following:
 
-```bash
-streamlit run streamlit_classifier_app.py
-```
+    ```bash
+    streamlit run streamlit_classifier_app.py
+    ```
+
+### Docker Approach
+#### Training the Model
+1. This will train the model from scratch and save the new model(s) to ./models directory locally
+    
+    ```bash
+    docker-compose --profile training up
+    ```
+
+#### Running the Streamlit application
+1. Runs main classifier app directly
+   ```bash
+    docker-compose --profile app up
+    ```
 
 Upload any JPG, PNG, BMP, or GIF image of a clothing item to get a prediction.
 
@@ -243,7 +266,7 @@ This project includes a comprehensive test suite to ensure code reliability and 
     ```bash
    pytest
    
-3. For detailed output with coverage information:
+3. For detailed output with coverage information (you will need to install pytest-cov for that):
     ```bash
    pytest -v --cov=utils
    
@@ -259,6 +282,9 @@ The testing covers ≈44% of the entire codebase. While it may not be a lot it v
 Tests are organized using pytest fixtures and follow the AAA (Arrange-Act-Assert) pattern to improve readability and maintainability. Mock objects are used to isolate tests from external dependencies like file systems and neural network training.
 
 Each component of the application is tested independently to ensure modular design and proper separation of concerns.
+
+## Notes
+For this small relatively small project, some implemented features may have been overkill. However, the main point of this project is to be in my portfolio and showcase my skills.
 
 ## License
 
