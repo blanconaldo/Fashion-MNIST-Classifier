@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    image: fashion-mnist-classifier
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./models:/app/models
+    profiles: ["app"]
+
+  training:
+    build: .
+    image: fashion-mnist-classifier
+    command: python main.py
+    volumes:
+      - ./models:/app/models
+    profiles: ["training"]
